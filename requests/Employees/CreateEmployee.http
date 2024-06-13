@@ -1,0 +1,17 @@
+### Post Create Employee
+POST {{HostAddress}}//employees
+Content-Type: application/json
+
+{
+  "name": "bruno",
+  "email": "bruno@test.com"
+}
+
+### Post Create Invalid Employee
+POST {{HostAddress}}//employees
+Content-Type: application/json
+
+{
+  "name": "as",
+  "email": "bruno"
+}
