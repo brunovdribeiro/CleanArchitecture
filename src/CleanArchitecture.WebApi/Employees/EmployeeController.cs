@@ -1,6 +1,8 @@
 using CleanArchitecture.Application.Common.Models;
 using CleanArchitecture.Application.Employees.Commands.CreateEmployee;
 using CleanArchitecture.Application.Employees.Queries;
+using CleanArchitecture.Contract.Employees;
+using CleanArchitecture.Domain.Entities;
 
 using MediatR;
 
@@ -13,7 +15,7 @@ namespace CleanArchitecture.WebApi.Employees;
 public class EmployeeController(ISender _mediator) : ControllerBase
 {
     [HttpGet("{pageNumber:int}/{pageSize:int}")]
-    public async Task<PaginatedList<EmployeeDto>> Get(int pageNumber, int pageSize)
+    public async Task<PaginatedList<Employee>> Get(int pageNumber, int pageSize)
     {
         GetEmployeesWithPagination query = new GetEmployeesWithPagination(pageNumber, pageSize);
 
@@ -21,7 +23,7 @@ public class EmployeeController(ISender _mediator) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<CreateEmployeeCommandResponse> Create(CreateEmployeeCommand request)
+    public async Task<CreateEmployeeCommandResponse> Create(CreateEmployeeRequest request)
     {
         CreateEmployeeCommand command = new CreateEmployeeCommand(request.Name, request.Email);
 
