@@ -7,7 +7,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddPresentation(this IServiceCollection services)
     {
-        services.AddControllers();
+        // services.AddControllers();
         services.AddHttpContextAccessor();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
@@ -28,7 +28,7 @@ public static class DependencyInjection
         app.MapHealthChecks("/health");
         app.UseExceptionHandler(options => { });
         app.UseHttpsRedirection();
-        app.MapControllers();
+        // app.MapControllers();
         
         return app;
     }

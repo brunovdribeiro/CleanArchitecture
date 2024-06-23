@@ -7,7 +7,7 @@ namespace CleanArchitecture.Application.Employees.EventHandler.EmployeeCreatedEv
 public class SendConfirmationEmailToEmployee(IEmailSender emailSender)
     : INotificationHandler<Domain.Events.Employees.EmployeeCreatedEvent>
 {
-    private const string From = "noreply@bet365.com";
+    private const string From = "noreply@test.com";
     private const string Subject = "Email Confirmation";
     private const string Body = "Welcome to planner365";
 

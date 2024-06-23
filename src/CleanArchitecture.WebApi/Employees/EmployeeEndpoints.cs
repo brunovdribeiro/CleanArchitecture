@@ -13,6 +13,7 @@ public static class EmployeeEndpoints
     public static WebApplication MapEmployeesEndpoints(this WebApplication app)
     {
         var endpoint = app.MapGroup("api/employees/");
+            ;
 
         endpoint.MapGet("{pageNumber:int}/{pageSize:int}", async (
             ISender mediator, 
@@ -31,7 +32,10 @@ public static class EmployeeEndpoints
             CreateEmployeeCommand command = new CreateEmployeeCommand(request.Name, request.Email);
         
             return await mediator.Send(command);
-        });
+        })
+            .WithDescription("Create Employee")
+            .WithSummary("Summary")
+            .WithOpenApi();
 
         return app;
     }
