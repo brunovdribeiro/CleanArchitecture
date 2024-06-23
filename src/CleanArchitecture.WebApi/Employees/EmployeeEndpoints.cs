@@ -4,20 +4,18 @@ using CleanArchitecture.Contract.Employees;
 
 using MediatR;
 
-using Microsoft.AspNetCore.Mvc;
-
 namespace CleanArchitecture.WebApi.Employees;
 
 public static class EmployeeEndpoints
 {
     public static WebApplication MapEmployeesEndpoints(this WebApplication app)
     {
-        var endpoint = app.MapGroup("api/employees/");
-            ;
+        RouteGroupBuilder endpoint = app.MapGroup("api/employees/");
+        ;
 
         endpoint.MapGet("{pageNumber:int}/{pageSize:int}", async (
-            ISender mediator, 
-            int pageNumber, 
+            ISender mediator,
+            int pageNumber,
             int pageSize) =>
         {
             GetEmployeesWithPagination query = new GetEmployeesWithPagination(pageNumber, pageSize);
@@ -26,13 +24,13 @@ public static class EmployeeEndpoints
         });
 
         endpoint.MapPost("/", async (
-            ISender mediator, 
-            CreateEmployeeRequest request) =>
-        {
-            CreateEmployeeCommand command = new CreateEmployeeCommand(request.Name, request.Email);
-        
-            return await mediator.Send(command);
-        })
+                ISender mediator,
+                CreateEmployeeRequest request) =>
+            {
+                CreateEmployeeCommand command = new CreateEmployeeCommand(request.Name, request.Email);
+
+                return await mediator.Send(command);
+            })
             .WithDescription("Create Employee")
             .WithSummary("Summary")
             .WithOpenApi();
