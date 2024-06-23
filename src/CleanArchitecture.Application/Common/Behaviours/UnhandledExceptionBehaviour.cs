@@ -26,7 +26,7 @@ public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavio
         {
             string requestName = typeof(TRequest).Name;
 
-            _logger.LogError(ex, "BSS Template Request: Unhandled Exception for Request {Name} {@Request}", requestName,
+            _logger.LogError(ex, "Clean Architecture Request: Unhandled Exception for Request {Name} {@Request}", requestName,
                 request);
 
             throw;

@@ -20,8 +20,6 @@ public class CreateEmployeeHandler(
 
         employee.AddDomainEvent(new EmployeeCreatedEvent(employee));
 
-        employee.Delete();
-
         await unitOfWork.SaveChanges();
 
         return new CreateEmployeeCommandResponse(employee.Id, employee.Name, employee.Email, employee.IsActive);

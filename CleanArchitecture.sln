@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.WebApi", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Contract", "02 - Contract", "{6FB47079-60DB-4C6C-97FA-C2BE1BB4BFAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Contract", "src\CleanArchitecture.Contract\CleanArchitecture.Contract.csproj", "{743EA415-80EF-49B7-988C-3EC1E6277E24}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Contracts", "src\CleanArchitecture.Contracts\CleanArchitecture.Contracts.csproj", "{743EA415-80EF-49B7-988C-3EC1E6277E24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -21,10 +21,6 @@ public static class DependencyInjection
         services.AddTransient<IUnitOfWork, UnitOfWork>();
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
 
-        string? connectionString = configuration.GetConnectionString("CleanArchitectureConnection");
-
-        ArgumentException.ThrowIfNullOrWhiteSpace(connectionString);
-
         services.AddDbContext<AppDbContext>((serviceProvider, options) =>
         {
             ISaveChangesInterceptor? interceptors = serviceProvider.GetService<ISaveChangesInterceptor>();
@@ -34,7 +30,7 @@ public static class DependencyInjection
                 options.AddInterceptors(interceptors);
             }
 
-            options.UseNpgsql(connectionString);
+            options.UseInMemoryDatabase("CleanArchitectureDB");
         });
 
         return services;

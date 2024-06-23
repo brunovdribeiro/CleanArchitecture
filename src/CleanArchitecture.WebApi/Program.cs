@@ -1,6 +1,7 @@
 using CleanArchitecture.Application;
 using CleanArchitecture.Infrastructure;
 using CleanArchitecture.WebApi;
+using CleanArchitecture.WebApi.Employees;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -10,11 +11,8 @@ builder.Services
     .AddInfrastructure(builder.Configuration)
     .AddApplication();
 
-WebApplication app = builder.Build();
-
-app.MapHealthChecks("/health");
-app.UseExceptionHandler(options => { });
-app.UseHttpsRedirection();
-app.MapControllers();
-
-app.Run();
+builder
+    .Build()
+    .UsePresentation()
+    .MapEmployeesEndpoints()
+    .Run();
