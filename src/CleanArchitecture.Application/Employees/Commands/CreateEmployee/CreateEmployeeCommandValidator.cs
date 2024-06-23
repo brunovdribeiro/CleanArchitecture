@@ -7,8 +7,9 @@ public class CreateEmployeeCommandValidator : AbstractValidator<CreateEmployeeCo
     public CreateEmployeeCommandValidator()
     {
         RuleFor(x => x.Name)
-            .MaximumLength(200)
-            .MinimumLength(3);
+            .NotNull()
+            .MinimumLength(3)
+            .MaximumLength(200);
 
         RuleFor(x => x.Email)
             .EmailAddress()

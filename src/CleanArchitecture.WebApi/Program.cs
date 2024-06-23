@@ -16,3 +16,5 @@ builder
     .UsePresentation()
     .MapEmployeesEndpoints()
     .Run();
+    
+public partial class Program { }
