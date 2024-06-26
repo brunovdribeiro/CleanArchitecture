@@ -18,7 +18,7 @@ public class Employee : EntityBase
     public bool IsActive { get; private set; }
     public bool IsDeleted { get; private set; }
 
-    public static Employee CreateInstance(string name, string email)
+    public static Employee? CreateInstance(string name, string email)
     {
         return new Employee(name, email);
     }

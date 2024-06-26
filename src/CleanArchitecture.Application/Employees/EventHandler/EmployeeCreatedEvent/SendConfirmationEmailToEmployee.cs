@@ -9,7 +9,7 @@ public class SendSecondEmail(IEmailSender emailSender)
 {
     private const string From = "noreply@test.com";
     private const string Subject = "Second Email Confirmation";
-    private const string Body = "Welcome to planner365";
+    private const string Body = "Welcome to Clean Architecture";
 
     public async Task Handle(Domain.Events.Employees.EmployeeCreatedEvent notification,
         CancellationToken cancellationToken)

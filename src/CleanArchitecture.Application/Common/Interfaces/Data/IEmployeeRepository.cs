@@ -4,6 +4,6 @@ namespace CleanArchitecture.Application.Common.Interfaces.Data;
 
 public interface IEmployeeRepository
 {
-    Task Add(Employee employee);
-    IQueryable<Employee> AllEmployees();
+    Task Add(Employee? employee);
+    IQueryable<Employee?> AllEmployees();
 }

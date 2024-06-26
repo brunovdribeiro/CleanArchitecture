@@ -3,7 +3,7 @@ using CleanArchitecture.Domain.Entities;
 
 namespace CleanArchitecture.Domain.Events.Employees;
 
-public class EmployeeCreatedEvent(Employee employee) : EventBase
+public class EmployeeCreatedEvent(Employee? employee) : EventBase
 {
-    public Employee Employee { get; } = employee;
+    public Employee? Employee { get; } = employee;
 }

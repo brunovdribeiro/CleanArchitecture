@@ -11,7 +11,6 @@ public static class EmployeeEndpoints
     public static WebApplication MapEmployeesEndpoints(this WebApplication app)
     {
         RouteGroupBuilder endpoint = app.MapGroup("api/employees/");
-        ;
 
         endpoint.MapGet("{pageNumber:int}/{pageSize:int}", async (
             ISender mediator,
@@ -32,7 +31,6 @@ public static class EmployeeEndpoints
                 return await mediator.Send(command);
             })
             .WithDescription("Create Employee")
-            .WithSummary("Summary")
             .WithOpenApi();
 
         return app;
