@@ -17,13 +17,14 @@ public class AppHttpClient(HttpClient _httpClient)
     {
         name ??= Constants.Employee.Name;
         email ??= Constants.Employee.Email;
-        
-        var response = await CreateEmployeeAsync(name, email);
-        
+
+        HttpResponseMessage response = await CreateEmployeeAsync(name, email);
+
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-        
-        var employeeCommandResponse = await response.Content.ReadFromJsonAsync<CreateEmployeeCommandResponse>();
-        
+
+        CreateEmployeeCommandResponse? employeeCommandResponse =
+            await response.Content.ReadFromJsonAsync<CreateEmployeeCommandResponse>();
+
         employeeCommandResponse.Should().NotBeNull();
 
         return employeeCommandResponse!;
@@ -34,8 +35,8 @@ public class AppHttpClient(HttpClient _httpClient)
         string? email = null)
     {
         const string url = "/api/employees";
-        
-        var payload = new CreateEmployeeRequest(name, email);
+
+        CreateEmployeeRequest payload = new CreateEmployeeRequest(name, email);
 
         return await _httpClient.PostAsJsonAsync(url, payload);
     }

@@ -28,7 +28,7 @@ public static class DependencyInjection
         app.MapHealthChecks("/health");
         app.UseExceptionHandler(options => { });
         app.UseHttpsRedirection();
- 
+
         return app;
     }
 }

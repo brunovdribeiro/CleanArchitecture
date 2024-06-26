@@ -1,6 +1,6 @@
 namespace CleanArchitecture.WebApi.IntegrationTests.Common.TestContraints;
 
-public static partial class Constants
+public static class Constants
 {
     public class Employee
     {

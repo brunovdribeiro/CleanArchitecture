@@ -5,13 +5,23 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.WebApi.IntegrationTests.Common.WebAppFactories;
 
-public class SqliteTestDatabase: IDisposable
+public class SqliteTestDatabase : IDisposable
 {
+    private SqliteTestDatabase(string connectionString)
+    {
+        Connection = new SqliteConnection(connectionString);
+    }
+
     public SqliteConnection Connection { get; }
+
+    public void Dispose()
+    {
+        Connection.Close();
+    }
 
     public static SqliteTestDatabase CreateAndInitialize()
     {
-        var testDatabase = new SqliteTestDatabase("DataSource=:memory:");
+        SqliteTestDatabase testDatabase = new SqliteTestDatabase("DataSource=:memory:");
 
         testDatabase.InitializeDatabase();
 
@@ -21,11 +31,11 @@ public class SqliteTestDatabase: IDisposable
     public void InitializeDatabase()
     {
         Connection.Open();
-        var options = new DbContextOptionsBuilder<AppDbContext>()
+        DbContextOptions<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>()
             .UseSqlite(Connection)
             .Options;
 
-        using var context = new AppDbContext(options);
+        using AppDbContext context = new AppDbContext(options);
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
     }
@@ -35,15 +45,5 @@ public class SqliteTestDatabase: IDisposable
         Connection.Close();
 
         InitializeDatabase();
-    }
-
-    public void Dispose()
-    {
-        Connection.Close();
-    }
-
-    private SqliteTestDatabase(string connectionString)
-    {
-        Connection = new SqliteConnection(connectionString);
     }
 }
